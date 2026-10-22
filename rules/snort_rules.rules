@@ -1,0 +1,35 @@
+# ============================================================================
+# NIDS Snort-Compatible Detection Rules
+# Compatible with Snort and Suricata rule parsers
+# ============================================================================
+
+# NIDS-001: Possible port scan - SYN packets to many unique destination ports
+alert tcp any any -> any any (msg:"Possible port scan detected"; flags:S; threshold:type threshold, track by_src, count 15, seconds 10; sid:1000001; rev:1;)
+
+# NIDS-002: Possible brute-force - many connections to SSH port 22
+alert tcp any any -> any 22 (msg:"Possible SSH brute-force attempt"; flags:S; threshold:type threshold, track by_src, count 10, seconds 30; sid:1000002; rev:1;)
+
+# NIDS-003: DNS amplification / large DNS response
+alert udp any any -> any 53 (msg:"Large DNS response - possible amplification"; dsize:>512; sid:1000003; rev:1;)
+
+# NIDS-004: ICMP flood / ping of death
+alert icmp any any -> any any (msg:"ICMP flood detected"; threshold:type threshold, track by_src, count 100, seconds 10; sid:1000004; rev:1;)
+
+# NIDS-005: Outbound connection to suspicious port (possible C2 / reverse shell)
+alert tcp any any -> any 4444 (msg:"Outbound connection to suspicious port 4444 - possible C2"; sid:1000005; rev:1;)
+alert tcp any any -> any 1337 (msg:"Outbound connection to suspicious port 1337 - possible C2"; sid:1000006; rev:1;)
+alert tcp any any -> any 31337 (msg:"Outbound connection to suspicious port 31337 - possible C2 (Back Orifice)"; sid:1000007; rev:1;)
+
+# NIDS-006: Large payload - possible data exfiltration
+alert tcp any any -> any any (msg:"Large outbound payload - possible data exfiltration"; dsize:>1400; sid:1000008; rev:1;)
+
+# NIDS-007: SMB access from external (possible worm/lateral movement)
+alert tcp any any -> any 445 (msg:"SMB access on port 445 - possible lateral movement"; sid:1000009; rev:1;)
+
+# NIDS-008: HTTP request to known-bad User-Agent (scanner)
+alert tcp any any -> any 80 (msg:"HTTP request with scanner User-Agent"; content:"nikto"; nocase; sid:1000010; rev:1;)
+alert tcp any any -> any 80 (msg:"HTTP request with scanner User-Agent"; content:"nmap"; nocase; sid:1000011; rev:1;)
+
+# ============================================================================
+# End of rules
+# ============================================================================
