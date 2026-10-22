@@ -1,0 +1,42 @@
+# ============================================================================
+# Suricata Sample Configuration (Project 3)
+# Use this as a starting point for a full Suricata IDS/IPS deployment.
+# ============================================================================
+
+default-log-path: /var/log/suricata/
+default-rule-path: /etc/suricata/rules/
+
+af-packet:
+  - interface: eth0
+    cluster-id: 99
+    cluster-type: cluster_flow
+    defrag: yes
+
+# Rule files to load
+rule-files:
+  - snort_rules.rules
+
+# Outputs
+outputs:
+  - eve-log:
+      enabled: yes
+      filetype: regular
+      filename: eve.json
+      types:
+        - alert:
+            payload: yes
+            http:
+              body: yes
+              body-limit: 50kb
+        - http:
+            extended: yes
+        - dns:
+            queries: yes
+            answers: yes
+
+# Thresholds (referenced by rules)
+threshold: /etc/suricata/threshold.config
+
+# ============================================================================
+# End of Suricata config
+# ============================================================================
