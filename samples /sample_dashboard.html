@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NIDS Detection Dashboard (Sample)</title>
+<style>
+  body { font-family: Segoe UI, sans-serif; margin: 2rem; background: #f4f6f8; }
+  h1 { color: #1f2937; }
+  .card { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  .stat { font-size: 2rem; font-weight: bold; color: #dc2626; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border: 1px solid #e5e7eb; padding: 0.5rem; text-align: left; }
+  th { background: #f3f4f6; }
+</style>
+</head>
+<body>
+  <h1>🚨 NIDS Detection Dashboard</h1>
+  <div class="card">
+    <h2>Overview</h2>
+    <p><span class="stat">5</span> total alerts</p>
+  </div>
+  <div class="card">
+    <h2>Alerts by Severity</h2>
+    <table>
+      <tr><th>Severity</th><th>Count</th></tr>
+      <tr><td>High</th><td>1</td></tr>
+      <tr><td>Medium</th><td>4</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Top Triggered Rules</h2>
+    <table>
+      <tr><th>Rule ID</th><th>Count</th></tr>
+      <tr><td>1000001</th><td>1</td></tr>
+      <tr><td>1000004</th><td>1</td></tr>
+      <tr><td>1000005</th><td>1</td></tr>
+      <tr><td>1000006</th><td>1</td></tr>
+      <tr><td>1000008</th><td>1</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Alerts by Protocol</h2>
+    <table>
+      <tr><th>Protocol</th><th>Count</th></tr>
+      <tr><td>TCP</th><td>4</td></tr>
+      <tr><td>ICMP</th><td>1</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Recent Alerts</h2>
+    <table>
+      <tr><th>Time</th><th>Rule</th><th>Severity</th><th>Source</th><th>Destination</th><th>Alert</th></tr>
+      <tr><td>14:30:01.102</td><td>1000001</td><td>High</td><td>192.168.1.45:51234</td><td>10.0.0.5:22</td><td>Possible port scan detected</td></tr>
+      <tr><td>14:30:01.105</td><td>1000004</td><td>Medium</td><td>10.0.0.1:</td><td>10.0.0.2:</td><td>ICMP flood detected</td></tr>
+      <tr><td>14:30:01.108</td><td>1000005</td><td>Medium</td><td>192.168.1.45:51236</td><td>203.0.113.5:4444</td><td>Outbound connection to suspicious port 4444 - possible C2</td></tr>
+      <tr><td>14:30:01.110</td><td>1000006</td><td>Medium</td><td>192.168.1.45:51237</td><td>198.51.100.23:1337</td><td>Outbound connection to suspicious port 1337 - possible C2</td></tr>
+      <tr><td>14:30:01.112</td><td>1000008</td><td>Medium</td><td>10.0.0.9:51238</td><td>203.0.113.10:443</td><td>Large outbound payload - possible data exfiltration</td></tr>
+    </table>
+  </div>
+</body>
+</html>
