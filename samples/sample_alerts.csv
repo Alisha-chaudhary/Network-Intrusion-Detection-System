@@ -1,0 +1,6 @@
+timestamp,rule_id,severity,src_ip,dst_ip,src_port,dst_port,protocol,alert,action_taken
+14:30:01.102,1000001,High,192.168.1.45,10.0.0.5,51234,22,TCP,Possible port scan detected,logged
+14:30:01.105,1000004,Medium,10.0.0.1,10.0.0.2,,,ICMP,ICMP flood detected,logged
+14:30:01.108,1000005,Medium,192.168.1.45,203.0.113.5,51236,4444,TCP,Outbound connection to suspicious port 4444 - possible C2,logged
+14:30:01.110,1000006,Medium,192.168.1.45,198.51.100.23,51237,1337,TCP,Outbound connection to suspicious port 1337 - possible C2,logged + simulated_block
+14:30:01.112,1000008,Medium,10.0.0.9,203.0.113.10,51238,443,TCP,Large outbound payload - possible data exfiltration,logged
